@@ -23,7 +23,7 @@ export class CategoryCard extends Component {
                     item={item}
                     deleteItem={this.props.deleteItem}
                 />
-            )
+            );
         });
         return (
             <div className='CategoryCard'>
@@ -33,6 +33,6 @@ export class CategoryCard extends Component {
                 </div>
                 {itemsCards}
             </div>
-        )
+        );
     }
 }

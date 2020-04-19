@@ -3,7 +3,7 @@ const baseUrl = "";
 
 export async function fetchJson(route, method = "POST", body = {}) {
     const init = {
-        method: method, // *GET, POST, PUT, DELETE, etc.
+        method: method,
         headers: {
             "Content-Type": "application/json"
         },

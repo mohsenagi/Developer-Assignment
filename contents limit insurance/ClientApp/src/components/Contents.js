@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ContentItem } from '../models/ContentItem.js';
 import { CategoryCard } from './CategoryCard.js';
+import { InputForm } from './InputForm.js';
 import { fetchJson } from '../scripts/fetch.js';
 
 export class Contents extends Component {
@@ -85,12 +86,6 @@ export class Contents extends Component {
             )
         });
         let totalValue = contents.reduce((acc, item) => acc + item.value, 0);
-        let categoryOptions = categories.map((categoryName, index) => {
-            return (
-                <option key={index}>{categoryName}</option>
-            )
-        });
-
         return (
             <div className='Main'>
                 <div className='CardsContainer'>
@@ -102,37 +97,14 @@ export class Contents extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='InputForm'>
-                    <input
-                        type="text"
-                        placeholder="New Item"
-                        id="newItemName"
-                        value={this.state.newItemName}
-                        onChange={this.handleChange}
-                    >
-                    </input>
-                    <input
-                        type="number"
-                        placeholder="Value"
-                        id="newItemValue"
-                        value={this.state.newItemValue}
-                        onChange={this.handleChange}
-                    >
-                    </input>
-                    <select
-                        id="newItemCategory"
-                        value={this.state.newItemCategory}
-                        onChange={this.handleChange}
-                    >
-                        {categoryOptions}
-                    </select>
-                    <button
-                        id="newItemAdd"
-                        onClick={this.addNewItem}
-                    >
-                        Add
-                    </button>
-                </div>
+                <InputForm
+                    categories={categories}
+                    handleChange={this.handleChange}
+                    addNewItem={this.addNewItem}
+                    newItemName={this.state.newItemName}
+                    newItemCategory={this.state.newItemCategory}
+                    newItemValue={this.state.newItemValue}
+                />
                 {this.state.loading && <p className="Message"><em>{this.state.message}</em></p>}
             </div>
         );
