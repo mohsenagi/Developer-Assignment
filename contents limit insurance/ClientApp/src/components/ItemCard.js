@@ -9,7 +9,7 @@ export class ItemCard extends Component {
             return false;
         } else {
             return true;
-        }
+        };
     }
 
     render() {
@@ -25,6 +25,6 @@ export class ItemCard extends Component {
                     />
                 </div>
             </div>
-        )
+        );
     }
 }

@@ -16,7 +16,7 @@ export class Contents extends Component {
             newItemValue: "",
             newItemCategory: 'Electronics',
             loading: true,
-            message: "Loading..."
+            message: ""
         };
     }
 
@@ -33,23 +33,32 @@ export class Contents extends Component {
         this.setState({
             loading: true
         });
+        setTimeout(() => {
+            if (this.state.loading) {
+                this.setState({
+                    message: "Saving ..."
+                });
+            };
+        }, 1000);
         let newItem = new ContentItem(this.state.newItemName, this.state.newItemCategory, Number(this.state.newItemValue));
         try {
             const data = await fetchJson("api/ContentItem", "POST", newItem);
             newItem.id = data.id;
             let contents = this.state.contents;
-            contents.push(newItem)
+            contents.push(newItem);
             this.setState({
                 contents: contents,
                 newItemName: "",
                 newItemValue: "",
-                loading: false
+                loading: false,
+                message: ""
             });
         } catch (error) {
             this.setState({
+                loading: false,
                 message: `We are sorry!! something went wrong while saving data.\n${error}`
-            })
-        }
+            });
+        };
     }
 
     deleteItem = async (id) => {
@@ -57,24 +66,33 @@ export class Contents extends Component {
         this.setState({
             loading: true
         });
+        setTimeout(() => {
+            if (this.state.loading) {
+                this.setState({
+                    message: "Saving ..."
+                });
+            };
+        }, 1000);
         try {
-            const data = await fetchJson("api/ContentItem/"+id, "DELETE");
+            await fetchJson("api/ContentItem/"+id, "DELETE");
             let contents = this.state.contents.filter(content => content.id !== id);
             this.setState({
                 contents: contents,
-                loading: false
+                loading: false,
+                message: ""
             });
         } catch (error) {
             this.setState({
+                loading: false,
                 message: `We are sorry!! something went wrong while saving data.\n${error}`
-            })
-        }
+            });
+        };
     }
 
 
     render() {
         let { categories, contents } = this.state;
-        let categoriesCards = categories.map((categoryName, index) => {
+        const categoriesCards = categories.map((categoryName, index) => {
             let items = contents.filter(content => content.category === categoryName);
             return (
                 <CategoryCard
@@ -83,7 +101,7 @@ export class Contents extends Component {
                     items={items}
                     deleteItem={this.deleteItem}
                 />
-            )
+            );
         });
         let totalValue = contents.reduce((acc, item) => acc + item.value, 0);
         return (
@@ -105,19 +123,30 @@ export class Contents extends Component {
                     newItemCategory={this.state.newItemCategory}
                     newItemValue={this.state.newItemValue}
                 />
-                {this.state.loading && <p className="Message"><em>{this.state.message}</em></p>}
+                <p className="Message"><em>{this.state.message}</em></p>
             </div>
         );
     }
 
     async populateContentsData() {
+        setTimeout(() => {
+            if (!this.state.loading) return;
+            this.setState({
+                message: "Loading ..."
+            });
+        }, 1000);
         try {
             const data = await fetchJson("api/ContentItem", "GET");
-            await this.setState({ contents: data, loading: false });
+            this.setState({
+                contents: data,
+                loading: false,
+                message: ""
+            });
         } catch (error) {
             this.setState({
+                loading: false,
                 message: `We are sorry!! something went wrong while loading data.\n${error}`
-            })
-        }
+            });
+        };
     }
 }

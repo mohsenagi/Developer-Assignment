@@ -8,14 +8,14 @@ export class InputForm extends Component {
             return false;
         } else {
             return true;
-        }
+        };
     }
 
     render() {
         let categoryOptions = this.props.categories.map((categoryName, index) => {
             return (
                 <option key={index}>{categoryName}</option>
-            )
+            );
         });
         return (
             <div className='InputForm'>

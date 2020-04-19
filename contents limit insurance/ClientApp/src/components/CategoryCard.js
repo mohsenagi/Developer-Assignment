@@ -9,14 +9,14 @@ export class CategoryCard extends Component {
             return false;
         } else {
             return true;
-        }
+        };
     }
 
     render() {
         let categoryName = this.props.categoryName;
         let items = this.props.items;
         let totalValue = items.reduce((acc, item) => acc + item.value, 0);
-        let itemsCards = items.map((item) => {
+        const itemsCards = items.map((item) => {
             return (
                 <ItemCard
                     key={item.id}
