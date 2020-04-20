@@ -1,6 +1,7 @@
 html, body {
     width: 100%;
     height: 100%;
+    font-size: calc(13px + 4 * ((100vw - 300px) / 1300));
 }
 
 .Main {
@@ -24,7 +25,7 @@ html, body {
 .CategoryCard {
     width: 100%;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 5fr 2fr;
     background-color: rgb(207, 230, 255);
     border-radius: 3px;
     margin: 1px 0 1px 0;
@@ -40,7 +41,7 @@ html, body {
     grid-column-end: 3;
     width: 100%;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 5fr 2fr;
     justify-content: end;
     padding: 1% 5% 1% 5%;
     background-Color: rgba(0, 0, 0, 0.1);
@@ -70,7 +71,7 @@ html, body {
 }
 
 .TotalCard {
-    width: 50%;
+    width: 70%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: rgb(143, 197, 255);
@@ -93,6 +94,7 @@ html, body {
 
 .InputForm input, select, button {
     min-width: 50px;
+    text-align: center;
 }
 
 .Message {

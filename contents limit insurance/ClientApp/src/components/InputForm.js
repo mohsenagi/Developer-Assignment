@@ -47,7 +47,7 @@ export class InputForm extends Component {
                     onClick={this.props.addNewItem}
                 >
                     Add
-            </button>
+                </button>
             </div>
         );
     }

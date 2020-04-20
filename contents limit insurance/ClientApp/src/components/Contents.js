@@ -30,6 +30,13 @@ export class Contents extends Component {
 
     addNewItem = async () => {
         if (this.state.loading) return;
+        let { newItemName, newItemCategory, newItemValue } = this.state;
+        if (newItemName === "" || newItemValue === "") {
+            this.setState({
+                message: "Please fill in all input fields"
+            });
+            return;
+        }
         this.setState({
             loading: true
         });
@@ -40,7 +47,7 @@ export class Contents extends Component {
                 });
             };
         }, 1000);
-        let newItem = new ContentItem(this.state.newItemName, this.state.newItemCategory, Number(this.state.newItemValue));
+        let newItem = new ContentItem(newItemName, newItemCategory, Number(newItemValue));
         try {
             const data = await fetchJson("api/ContentItem", "POST", newItem);
             newItem.id = data.id;

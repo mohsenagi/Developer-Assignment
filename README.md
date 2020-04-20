@@ -4,8 +4,8 @@ This is a basic single-page application to calculate contents insurance limit.
 
 ## Deployment
 
-This app is currently deployed on following addresses
-Azure: 
+This app is currently deployed on the following address
+Azure: https://contents-limit-calculator.azurewebsites.net/
 
 ## Built With
 
