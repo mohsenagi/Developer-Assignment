@@ -46,7 +46,7 @@ export class Contents extends Component {
                     message: "Saving ..."
                 });
             };
-        }, 1000);
+        }, 500);
         let newItem = new ContentItem(newItemName, newItemCategory, Number(newItemValue));
         try {
             const data = await fetchJson("api/ContentItem", "POST", newItem);
@@ -79,7 +79,7 @@ export class Contents extends Component {
                     message: "Saving ..."
                 });
             };
-        }, 1000);
+        }, 500);
         try {
             await fetchJson("api/ContentItem/"+id, "DELETE");
             let contents = this.state.contents.filter(content => content.id !== id);
@@ -141,7 +141,7 @@ export class Contents extends Component {
             this.setState({
                 message: "Loading ..."
             });
-        }, 1000);
+        }, 500);
         try {
             const data = await fetchJson("api/ContentItem", "GET");
             this.setState({
